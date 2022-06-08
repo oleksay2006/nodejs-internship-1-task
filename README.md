@@ -8,15 +8,13 @@ npm i your-ip
 ```
 
 ## Usage
-Since the getIpInfo function is asynchronous, we get a promise when we call it. Therefore, we need to wrap the function in an asynchronous function and wait for the response using the await operator
+Since the getIpInfo function is asynchronous, we get a promise when we call it. Therefore, we need to wait for the response using the await operator
 
 ```
 import getIpInfo from 'your-ip'
 
-(async function () {
-  const result = await getIpInfo();
-  console.log(result);
-}());
+const ip = await getIpInfo();
+console.log(ip);
 ```
 
 And then, to see your IP, open the console

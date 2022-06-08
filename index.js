@@ -1,9 +1,18 @@
 import fetch from 'node-fetch';
 
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 1000);
+
 export default async function getIpInfo() {
-  return new Promise((resolve) => {
-    fetch('https://api.ipify.org/?format=json')
-      .then((response) => response.json())
-      .then((ip) => resolve(ip));
-  });
+  return fetch('https://api.ipify.org/?format=json', { signal: controller.signal })
+    .then((response) => response.json())
+    .then((ip) => (ip))
+    .catch((e) => {
+      const noIp = { ip: '0.0.0.0' };
+      console.error(`Download error: ${e.message}`);
+      return noIp;
+    });
 }
+
+const ip = await getIpInfo();
+console.log(ip);
