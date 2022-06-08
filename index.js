@@ -13,6 +13,3 @@ export default async function getIpInfo() {
       return noIp;
     });
 }
-
-const ip = await getIpInfo();
-console.log(ip);
