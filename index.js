@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 const controller = new AbortController();
-setTimeout(() => controller.abort(), 1000);
+setTimeout(() => controller.abort(), 3000);
 
 export default async function getIpInfo() {
   return fetch('https://api.ipify.org/?format=json', { signal: controller.signal })
